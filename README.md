@@ -1,11 +1,29 @@
-TypeScript Function Generator Demo
-=================================
+TypeScript Function Generator Fib Demo
+======================================
 
-Function generator通过yield关键字，可以把一个函数的执行过程变成可暂停的多段，
-每次调用.next()就会向前执行完下一个yield后暂停。
+利用function generator实现fib函数。
 
-可以实现很强大的功能，比如异步、批处理、暂停/继续，等等，但是由于功能太强大且难以掌握，
-所以在实际项目中很少使用，多数情况使用async/await
+注意：开始时，我使用的是这样的写法：
+
+```
+const c = yield a + b
+```
+
+我原以为当我调用`.next()`之后，它会把yield计算出来的值赋给`c`，实际上不是的。
+
+yield后面表达式的值只会当作`.next()`的返回值，而不会赋给`c`。`c`的值只能来自于下一个`.next(x)`调用时传入的参数`x`
+
+也就是说，上面的代码实际上可以理解为：
+
+```
+next() {
+  return a + b
+}
+
+next(x) {
+  const c = x;
+}
+```
 
 ```
 npm install

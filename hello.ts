@@ -1,14 +1,18 @@
-console.log('Hello');
-
-function* idMaker() {
-  let index = 0;
-  while (true)
-    yield index++;
+function* fib() {
+  let a = 0;
+  let b = 1;
+  while (true) {
+    yield b;
+    [a, b] = [b, a + b]
+  }
 }
 
-const gen = idMaker();
-console.log(gen.next().value); // 0
-console.log(gen.next().value); // 1
-console.log(gen.next().value); // 2
-console.log(gen.next().value);
-
+const myFib = fib();
+console.log(myFib.next());
+console.log(myFib.next());
+console.log(myFib.next());
+console.log(myFib.next());
+console.log(myFib.next());
+console.log(myFib.next());
+console.log(myFib.next());
+console.log(myFib.next());
